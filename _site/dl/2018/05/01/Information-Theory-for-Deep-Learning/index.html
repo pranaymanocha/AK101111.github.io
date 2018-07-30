@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Information Theory for Deep Learning &#8211; Home Page</title>
+    <link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Trying to understand DL using the information perspective.">
+    <meta name="robots" content="all">
+    <meta name="author" content="Arnav Kansal">
+    
+    <meta name="keywords" content="DL">
+    <link rel="canonical" href="http://localhost:4000/dl/2018/05/01/Information-Theory-for-Deep-Learning/">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Home Page" href="/feed.xml" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/pixyll.css?201807292347" type="text/css">
+
+    <!-- Fonts -->
+    
+    <link href='//fonts.googleapis.com/css?family=Merriweather:900,900italic,300,300italic&amp;subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lato:900,300&amp;subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    
+    
+      <link href="//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    
+
+    <!-- MathJax -->
+    
+    <script type="text/javascript" async
+        src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+
+    <!-- Verifications -->
+    
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Information Theory for Deep Learning">
+    <meta property="og:description" content="ML, High performance systems enthusiast">
+    <meta property="og:url" content="http://localhost:4000/dl/2018/05/01/Information-Theory-for-Deep-Learning/">
+    <meta property="og:site_name" content="Home Page">
+    
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    
+    <meta name="twitter:title" content="Information Theory for Deep Learning" />
+    <meta name="twitter:description" content="Trying to understand DL using the information perspective." />
+    <meta name="twitter:url" content="http://localhost:4000/dl/2018/05/01/Information-Theory-for-Deep-Learning/" />
+    
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+
+    
+</head>
+
+<body class="site">
+  
+	
+
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="http://localhost:4000" class="site-title">Home Page</a>
+      <nav class="site-nav">
+        
+
+
+
+    
+    
+    
+    
+        <a href="/about/">About Me</a>
+    
+
+    
+
+    
+    
+    
+    
+        <a href="/blog/">Posts</a>
+    
+
+    
+
+
+      </nav>
+      <div class="clearfix"></div>
+      
+        <div class="social-icons">
+  <div class="social-icons-right">
+    
+      <a class="fa fa-github" href="https://github.com/AK101111"></a>
+    
+    
+    
+    
+    <a class="fa fa-rss" href="/feed.xml"></a>
+    
+    
+    
+    
+    
+      <a class="fa fa-envelope" href="mailto:arnavkansal@gmail.com"></a>
+    
+    
+      <a class="fa fa-linkedin" href="https://www.linkedin.com/in/arnavkansal"></a>
+    
+    
+    
+    
+    
+  </div>
+  <div class="right">
+    
+    
+    
+  </div>
+</div>
+<div class="clearfix"></div>
+
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>Information Theory for Deep Learning</h1>
+  <span class="post-meta">May 1, 2018</span><br>
+  
+  <span class="post-meta small">
+  
+    21 minute read
+  
+  </span>
+</div>
+
+<article class="post-content">
+  <p align="center">
+	<img src="https://github.com/AK101111/AK101111.github.io/blob/master/images/it.jpg?raw=true" alt="Information Theory" />
+</p>
+
+<p>Despite the lack of strong theoretical bounds, Deep Neural Networks have been embarrassingly successful in various practical tasks in fields ranging from Computer Vision, Natural Language Processing, medicine, etc. There has been much work in understanding how these systems work and the community has started to view them not as black boxes.</p>
+
+<p>This survey aims to study Neural Networks from an Information Theory standpoint. The majority of this survey can be viewed as the study of the ingenious work by <a href="https://arxiv.org/pdf/1703.00810.pdf">Tishby and Schwartz-Ziv</a> in this field and the followup critical work by <a href="https://openreview.net/pdf?id=ry_WPG-A-">Andrew M. Saxe et. al</a>. In the end we provide some small experiments of our own which might help resolve at least some of the conflicts.</p>
+
+<hr />
+
+<p>To start, we will first review the mathematical foundation required to make sense of Tishby’s findings. We will start by exploring a Deep Neural Network setting designed to solve a classification problem. This kind of a framework lies at the heart of many problems discussed above.</p>
+
+<p>The input variable <script type="math/tex">X</script> here is generally a very large dimensional random variable, whereas the output variable <script type="math/tex">Y</script> (to be predicted) is not as large in dimensionality.</p>
+
+<p><em>For instance, in <a href="https://www.kaggle.com/c/imagenet-object-detection-challenge">ImageNet challenge 2017</a> the average size of an image is <code class="highlighter-rouge">482x415</code> pixels, which is about <code class="highlighter-rouge">200K</code> dimensional and the output variable is only 200 in dimension. In terms of information theory, the number of bits required to represent the output variable is <script type="math/tex">\approx</script> <code class="highlighter-rouge">8</code> i.e. (<script type="math/tex">log_{2} 200</script>).</em></p>
+
+<blockquote>
+  <p>This means that the features in <script type="math/tex">X</script> that are informative about <script type="math/tex">Y</script> are scattered in some sense and may be difficult to extract.</p>
+</blockquote>
+
+<p>Readers well versed in basic information theory may skip the next section.</p>
+<h2 id="information-theory-prerequisites">Information Theory: Prerequisites</h2>
+
+<p>For the sections to follow, the logarithm is chosen in base <code class="highlighter-rouge">2</code> so that the units of the quantities talked further can be interpreted in terms of bits.</p>
+
+<h3 id="kl-divergence">KL Divergence</h3>
+<p>KL Divergence is simply a measure of how two probability distributions differ. For discrete probability distributions <script type="math/tex">P</script> and <script type="math/tex">Q</script>,</p>
+
+<script type="math/tex; mode=display">D_{KL}(P || Q) = \sum P(i) \log_2 \left( \frac{P(i)}{Q(i)} \right)</script>
+
+<h3 id="entropy">Entropy</h3>
+<p>The entropy of a discrete random variable X (taking values in {<script type="math/tex">x_1, x_2, ... , x_n</script>}), with a probability mass function <script type="math/tex">P(X)</script> is defined as:</p>
+
+<script type="math/tex; mode=display">H(X) = - \sum_{i=1}^n p(x_i) log_2( p(x_i) )</script>
+
+<p>Also we can define conditional entropy of two random variables X and Y as follows:</p>
+
+<script type="math/tex; mode=display">H(X|Y) = - \sum_{i,j} p(x_i,y_j) \log_2 \left( \frac{p(x_i,y_j)}{p(y_j)} \right)</script>
+
+<h3 id="mutual-information">Mutual Information</h3>
+<p>The mutual information between two random variables (X and Y) is a quantification of the amount of information that is obtained about one random variable from the other.</p>
+
+<script type="math/tex; mode=display">I(X;Y) = \sum_{y \in Y} \sum_{x \in X} p(x,y) log_2 \left( \frac{p(x,y)}{p(x)p(y)} \right)</script>
+
+<script type="math/tex; mode=display">\sum_{x,y} p(x,y) \log_2 \left( \frac{p(x,y)}{p(x)} \right) - \sum_{x,y} p(x,y) \log_2( p(y) )</script>
+
+<script type="math/tex; mode=display">\sum_{x} p(x) \sum_{y} p(y | x) \log_2( p(y | x)  - \sum_{y} \log_2( p(y) ) \sum_{x} p(x,y)</script>
+
+<script type="math/tex; mode=display">\sum_{x} p(x) H(Y | X=x)  - \sum_{y} \log_2( p(y) ) p(y)</script>
+
+<script type="math/tex; mode=display">H(Y) - H(Y | X) = H(X) - H(X | Y)</script>
+
+<h3 id="invariance-to-invertible-transforms">Invariance to invertible transforms</h3>
+<p>For any invertible functions <script type="math/tex">\Phi, \Psi</script>:</p>
+
+<script type="math/tex; mode=display">I(X;Y) = I(\Phi(X);\Psi(Y))</script>
+
+<h3 id="data-processing-inequality-dpi">Data Processing Inequality (DPI)</h3>
+<p>For any markovian chain of random variables <script type="math/tex">X \rightarrow T \rightarrow Y</script>:</p>
+
+<script type="math/tex; mode=display">I(X;Y) \geq I(X;Z)</script>
+
+<h2 id="dnns-form-a-markov-chain">DNNs form a Markov Chain</h2>
+<p align="center">
+	<img src="https://github.com/AK101111/AK101111.github.io/blob/master/images/nn.png?raw=true" alt="Encoder Decoder" />
+</p>
+
+<script type="math/tex; mode=display">Y \rightarrow X \rightarrow X \rightarrow T_1 \rightarrow T_2 .. \rightarrow T_i \rightarrow ..  \rightarrow \hat{Y}</script>
+
+<hr />
+
+<p>The output of each layer may be considered as a random variable <script type="math/tex">T</script>, and thus is just a representation of the input random variable. Each such representation <script type="math/tex">T</script> may be defined using an encoder distribution <script type="math/tex">P(T \lvert X)</script> and <script type="math/tex">P(\hat{Y} \lvert T)</script>. Such distributions may be further used to describe <script type="math/tex">I_X = I(X;T)</script> and <script type="math/tex">I_Y = I(T;Y)</script>. Collectively, plotting <script type="math/tex">I_X</script>, <script type="math/tex">I_Y</script> over time(during training) for different layers can help us understand the dynamics of what actually happens during training.</p>
+
+<p>By the data processing inequality we have:</p>
+
+<script type="math/tex; mode=display">I(X;Y) \geq I(T_1;Y) \geq I(T_1;Y) \geq I(T_i;Y) … \geq I(\hat{Y};Y)</script>
+
+<script type="math/tex; mode=display">H(X) \geq I(X;T_1) \geq I(X;T_2) \geq I(X;T_i) … \geq I(X;\hat{Y})</script>
+
+<p>These two set of inequalities tell us that the plot of <script type="math/tex">I_X</script> vs <script type="math/tex">I_Y</script> will be monotonically increasing as we move from the predicted variable to the input variable. (across the layers)</p>
+
+<h3 id="information-bottleneck-applied-to-understand-dnns">Information Bottleneck applied to understand DNNs</h3>
+<p>Any DNN, given the set of input and output and a predefined learning task, tries to learn some representation <script type="math/tex">T</script> of <script type="math/tex">X</script> which characterized <script type="math/tex">Y</script>. What might be a good enough representation? One such representation is the minimal sufficient statistic. Tishby et al. 1999, gave an optimization problem which gives an approximate sufficient statistic. This framework represents the tradeoff between the compression of the input variable <script type="math/tex">X</script> and the prediction of <script type="math/tex">Y</script>.</p>
+
+<p>For a markov chain <script type="math/tex">Y \rightarrow X \rightarrow X \rightarrow T \rightarrow \hat{Y}</script>, with probability distributions <script type="math/tex">p(t \lvert x), p(t), p(y \lvert t)</script> minimize:</p>
+
+<script type="math/tex; mode=display">\min_{p(t \lvert x), p(t), p(y \lvert t)} {I(X;T) - \beta I(T;Y)}</script>
+
+<p>This objective is easy to look at using the following argument. Think of the first term trying to compress the input and the second term is trying to retain only that information relevant for <script type="math/tex">Y</script>. Thereby this framework squeezes out the information from <script type="math/tex">X</script> relevant to only <script type="math/tex">Y</script>.</p>
+
+<p>Further, <script type="math/tex">I(X;T)</script> corresponds to the learning complexity and <script type="math/tex">I(T;Y)</script>  corresponds to test/generalization error.</p>
+
+<p>Now the idea is to utilize this curve and study how the information plane of DNN looks with respect to such an information bottleneck framework.</p>
+
+<p>The original idea of the ‘Opening the black box of Deep Neural Networks via Information’ paper by Tishby et al. 2017 is to:</p>
+
+<blockquote>
+  <p>Demonstrate the effectiveness of the visualization of DNNs in the information plane for a better understating of the training dynamics, learning processes, and internal representations in Deep Learning (DL).</p>
+</blockquote>
+
+<h3 id="experimental-setup">Experimental setup</h3>
+<p>Their idea involves plotting the information plane(traced by the DNNs during training with SGD) and the information bottleneck curve which represents the limit. So this experiment will involve knowing the joint probability distribution of the data beforehand. Also, the mutual information of discrete random variables will have to be estimated by knowing only a handful of samples from the entire data distribution, but how to do that is reserved for a later post.</p>
+
+<h2 id="sgd-layer-dynamics-in-info-plane">SGD Layer Dynamics in Info Plane</h2>
+<p align="center">
+<iframe width="640" height="360" src="https://www.youtube.com/embed/q45lPv9rev0" frameborder="0"></iframe>
+</p>
+<p>The reader is encouraged to view the video above which clearly shows how the information plane evolves over time (over epochs) and across the layers which is shown by dots in different colors. There are many dots of one color which simply represent the different initialization states over the neural network.</p>
+
+<p>If we look at the last layer (the dots in orange) it is evident that they show a behaviour which is constantly increasing in the <script type="math/tex">Y</script> axis, but shows a convex behaviour in <script type="math/tex">X</script> axis, ie. it first increases with respect to <script type="math/tex">X</script> and reaches a maximum (at around 400 epochs) followed by a final decrease in the <script type="math/tex">X</script> axis.</p>
+
+<p>This behavior is explained by the author as a distinct two-stage process which involves:</p>
+<p align="center">
+	<img src="https://github.com/AK101111/AK101111.github.io/blob/master/images/info_plane.jpg?raw=true" width="50%" height="50%" alt="Information Plane" />
+</p>
+
+<ol>
+  <li><strong>Fast ERM stage</strong>
+ This phase is characterized by the steep increase of <script type="math/tex">I_Y</script>. Also, this fast stage takes only some hundred epochs out of the total <code class="highlighter-rouge">10K</code> iterations in the example data set.</li>
+  <li><strong>Slow Training phase (Representation compression phase)</strong>
+ The second stage is much longer and in fact, takes up most of the time that is more than <code class="highlighter-rouge">9K</code> epochs out of the total. During this phase, the information <script type="math/tex">I(X;T)</script> decreases for each layer (though this loss is more prominent for the later layers, DPI is respected) and all non-essential information of <script type="math/tex">X</script> with respect to <script type="math/tex">Y</script> is essentially lost.</li>
+</ol>
+
+<h3 id="drift-and-diffusion">Drift and Diffusion</h3>
+<p>The discussion above is from the standpoint of the information plane. Another interesting viewpoint of the training dynamics of neural networks is observed if the same timeline of epochs is observed with the evolution of weights. That is the mean and standard deviation of weights for a particular layer is tracked over the course of training.</p>
+
+<p align="center">
+	<figure>
+  <img src="https://github.com/AK101111/AK101111.github.io/blob/master/images/usigma.png?raw=true" width="80%" height="80%" alt="mean and std of weights of a layer over epochs" />
+  <figcaption>Layers gradients distribution during optimization. (Img. source Tishby and Schwartz-Ziv 2017 )</figcaption>
+</figure>
+
+</p>
+
+<p>The first phase is characterized by weights which have high mean and small variance, and thus a small SNR. This phase is called the drift phase and denotes small stochasticity. Similarly, the second phase is when the SNR is relatively larger and so the gradients act like noise (sampled from a Gaussian distribution with a very small mean) to each of the layers and is called the diffusion phase by the authors.</p>
+
+<p>We see that there is a significant jerk in the SNR of the weights at around 400 epochs. 
+Notice the clear two distinct phases observed in this evolution too! In fact, the epoch at which this marked change is observed is the same at which we begin to see the compression behavior beginning in the information plane. This points to the fact that there is a causal relation between SGD dynamics and the generalization performance.</p>
+
+<h2 id="hidden-layers">Hidden Layers</h2>
+<p>The authors have empirically shown using some experiments that there is computational benefit by adding more hidden layers and the same can be verified by the image included below.</p>
+<ol>
+  <li>The number of training epochs is reduced for good generalization.</li>
+  <li>Compression phase of each layer is shorter.</li>
+  <li>The compression is faster for layers close to the output.</li>
+</ol>
+
+<p align="center">
+	<figure>
+  <img src="https://github.com/AK101111/AK101111.github.io/blob/master/images/hidden_layers.png?raw=true" width="80%" height="80%" alt="Computational benefit of hidden layers" />
+  <figcaption>Illustrating the various benefits of adding hidden layers. (Img. source Tishby and Schwartz-Ziv 2017 )</figcaption>
+</figure>
+
+</p>
+
+<h2 id="optimal-ib-representation">Optimal IB representation</h2>
+<p>To test if the trained network actually closely satisfies the optimal information bottleneck objective the authors conducted the following experiment. Using the already calculated values of <script type="math/tex">p(t \lvert x)</script> and <script type="math/tex">p(y \lvert t)</script> they then apply the framework of <a href="https://arxiv.org/pdf/physics/0004057.pdf">information bottleneck</a> to calculate the optimal <script type="math/tex">p_{\beta}^{IB} (t \lvert x)</script>. This uses the ith layer decoder, <script type="math/tex">p(y \lvert t)</script> and any given value of <script type="math/tex">\beta</script>.</p>
+
+<p>Then for each layer, they calculated the optimal <script type="math/tex">\beta^{*}</script> by minimizing the average distance between the optimal IB decoder distribution and the ith layer encoder.</p>
+
+<p>Further, they plot the IB information curve (theoretical) and then mark the actual values of <script type="math/tex">I_X</script> and <script type="math/tex">I_Y</script> for the different layers of the neural network on this same plot.</p>
+
+<p align="center">
+	<figure>
+  <img src="https://github.com/AK101111/AK101111.github.io/blob/master/images/optimalib.png?raw=true" width="60%" height="60%" alt="Convergence of layers to the IB bound" />
+  <figcaption>Experiment showing the closeness of the DNN layers to the optimal IB bound. (Img. source Tishby and Schwartz-Ziv 2017 )</figcaption>
+</figure>
+
+</p>
+<p>Viola, the slope of the curve at the points <script type="math/tex">I_X</script> and <script type="math/tex">I_Y</script> for the different layers should be <script type="math/tex">\beta^{-1}</script> which lies incredibly close to the calculated optimal <script type="math/tex">\beta^{*}</script> for each layer. This points to the fact that the DNNs actually capture an optimal IB representation.</p>
+
+<h2 id="new-generalization-bounds-for-neural-networks">New Generalization bounds for Neural Networks</h2>
+<p>The authors state that the training of a neural network comprises of two stages - fitting and compression and the excellent generalization performance of deep networks is attributed to the latter.</p>
+
+<p>In his recent <a href="https://www.youtube.com/watch?v=XL07WEc2TRI">seminar</a> at Stanford, Naftaly Tishby attempts to prove that compression leads to a dramatic improvement in generalization.</p>
+
+<p>He proposes to reconsider learning theory for deep neural networks based on his belief that the existing generalization bounds are too weak for Deep Learning.</p>
+
+<h3 id="earlier-generalization-bounds">Earlier Generalization Bounds</h3>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\epsilon^2 < \frac{\log \lvert H_{\epsilon} \rvert + \log 1 / \delta}{2m} %]]></script>
+
+<p>Here,<br />
+<script type="math/tex">\epsilon</script> is the generalization error<br />
+<script type="math/tex">\delta</script> is the confidence<br />
+<script type="math/tex">m</script> is the number of training examples<br />
+<script type="math/tex">H_{\epsilon}</script> is the <script type="math/tex">\epsilon</script> cover of the Hypothesis class</p>
+
+<p><script type="math/tex">\lvert H_{\epsilon} \rvert</script> is typically assumed to be <script type="math/tex">\lvert H_{\epsilon} \rvert \approx \left(\frac{1}{\epsilon}\right)^d</script><br />
+with <script type="math/tex">d</script> being the complexity (Rademacher complexity, VC dimension, etc) of the Hypothesis class</p>
+
+<p>Although these bounds guide researchers on how much of generalization is possible for most of the problems, these bounds are quite vacuous for deep learning as the VC dimension of deep neural networks is of the order of the number of parameters and neural networks work surprisingly well for datasets much smaller than the number of parameters.</p>
+
+<p>Tishby proposes generalization bounds based on input compression which he believes to be tighter as compared to the earlier generalization bounds.</p>
+
+<div id="Tight" />
+
+<h3 id="tighter-input-compression-bounds-proposed-by-tishby">Tighter Input Compression Bounds proposed by Tishby</h3>
+
+<p>According to the Shannon McMillan limit for entropy,</p>
+
+<script type="math/tex; mode=display">H(x) = - \lim_{n \rightarrow \infty} \frac{1}{n} \log p(x_1, …, x_n)</script>
+
+<p>With most of the inputs <script type="math/tex">X = x_1, …, x_n</script> being typical with probability:</p>
+
+<script type="math/tex; mode=display">p(x_1, …, x_n) = 2^{- n H(X)}</script>
+
+<p>Similarly, for partitions <script type="math/tex">T</script> that are typical and are large enough,</p>
+
+<script type="math/tex; mode=display">p(x_1, …, x_n \vert T) = 2^{- n H(X \vert T)}</script>
+
+<p align="center">
+<img src="https://github.com/AK101111/AK101111.github.io/blob/master/images/Anda.png?raw=true" width="50%" height="50%" alt="Epsilon partition of the input variable" />
+</p>
+
+<p>According to the earlier generalization bounds, <script type="math/tex">% <![CDATA[
+\epsilon^2 < \frac{\log \lvert H_{\epsilon} \rvert + \log 1 / \delta}{2m} %]]></script> where <script type="math/tex">\lvert H_{\epsilon} \rvert \approx \left(\frac{1}{\epsilon}\right)^d</script></p>
+
+<p>However, given the above idea, <script type="math/tex">\lvert H_{\epsilon} \rvert</script> can be approximated as <script type="math/tex">\lvert H_{\epsilon} \rvert \approx 2^{\lvert T_{\epsilon} \rvert}</script></p>
+
+<p>where <script type="math/tex">T_{\epsilon}</script> is the <script type="math/tex">\epsilon</script> partition of the input variable <script type="math/tex">X</script>.</p>
+
+<p><script type="math/tex">\lvert T_{\epsilon} \rvert \approx \frac{\lvert X \rvert}{\lvert X \vert T_{\epsilon} \rvert}</script>
+provided that the partitions remain homogenous to the label probability.</p>
+
+<p>With the above assumption, the Shannon McMillan limit results in</p>
+
+<script type="math/tex; mode=display">\lvert T_{\epsilon} \rvert \approx \frac{2^{H(X)}}{2^{H(X \vert T_{\epsilon})}} = 2^{I( T_{\epsilon}; X)}</script>
+
+<p>Thus we have the following generalization bound based on input compression as proposed by Tishby</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\epsilon^2 < \frac{2^{I( T_{\epsilon}; X)} + \log 1 / \delta}{2m} %]]></script>
+
+<p>This generalization bound depends on <script type="math/tex">I( T_{\epsilon}; X)</script> and decreases when the information between <script type="math/tex">T_{\epsilon}</script> and <script type="math/tex">X</script> reduces.</p>
+
+<p><script type="math/tex">K</script> bits of compression of the input reduces the training examples requirement by a factor of <script type="math/tex">2^K</script> if this bound applies and is tight. Thus, a bit of compression is as effective as doubling the size of the training data.</p>
+
+<p>The authors argue that compression is necessary for good generalization error and hence justify the compression phase of neural network training.</p>
+
+<h2 id="critical-response-by-andrew-m-saxe-et-al">Critical Response by Andrew M. Saxe et al</h2>
+
+<p>Saxe et al present a critical review of Tishby et al’s explanation of deep learning success through their information compression arguments. They present their opposition to the three specific claims made by Tishby et al.</p>
+
+<h3 id="claim-1-distinct-fitting-and-compression-phases">Claim 1: Distinct fitting and compression phases</h3>
+
+<p>The authors argue that compression or loss in mutual information between the hidden layers and the input arises primarily due to saturation of the non-linear activations used and is related to the assumption of binning of noise in the hidden layer representation.</p>
+
+<p>Tishby et al had made use of the <script type="math/tex">\tanh</script> (hyperbolic tangent) function as the activation function. The <script type="math/tex">\tanh</script> function saturates to 1 and -1 on high positive and negative values respectively. Saxe et al claim that compression achieved by Tishby et al was due to the fact that <script type="math/tex">\tanh</script> is a double saturating function, i.e. it saturates on both the sides and binning such a function results in a non-invertible mapping between the input and the hidden layer. For large weights, the <script type="math/tex">\tanh</script> hidden unit almost always saturates yielding a discrete variable concentrating in just two bins. This lowers the mutual information between the hidden unit and the input to just 1 bit.</p>
+
+<p>As the weights tend to increase during training, they are forced to concentrate into a smaller number of bins to which the authors attribute the reason for the compression phase as was observed by the original authors.</p>
+
+<p align="center">
+<img src="https://github.com/AK101111/AK101111.github.io/blob/master/images/tanh.png?raw=true" width="50%" height="50%" /><img src="https://github.com/AK101111/AK101111.github.io/blob/master/images/relu.png?raw=true" width="50%" height="50%" />
+</p>
+
+<p>To test this notion, Saxe et al repeat the same procedure for <script type="math/tex">ReLU</script> with all the layers containing <script type="math/tex">ReLU</script> units except for the final output layer containing sigmoid units. The authors report no apparent compression phase for <script type="math/tex">ReLU</script> units.</p>
+
+<p>The authors justify their observations by noting that <script type="math/tex">ReLU</script> is a single saturating function. With <script type="math/tex">ReLU</script> nonlinearity, inputs are no longer forced to concentrate into a limited number of bins even for large weights as the positive half of <script type="math/tex">ReLU</script> is a linear function.</p>
+
+<p>The authors also provide an exact mathematical proof of how the entropy reduces for larger weights in the case of <script type="math/tex">\tanh</script> nonlinearity but not in the case of the <script type="math/tex">ReLU</script> non-linearity through a simple example consisting of a single hidden layer with a single neuron with a single input and output.</p>
+
+<p align="center">
+<img src="https://github.com/AK101111/AK101111.github.io/blob/master/images/chotunn.png?raw=true" width="50%" height="50%" alt="Epsilon partition of the input variable" />
+</p>
+
+<p>This network has a single input <script type="math/tex">X</script> and output <script type="math/tex">Y</script>. The hidden layer <script type="math/tex">h</script> is binned yielding a new discrete variable <script type="math/tex">T = bin(h)</script>. Here, the mutual information between <script type="math/tex">T</script> and <script type="math/tex">X</script> is calculated as</p>
+
+<script type="math/tex; mode=display">I(T; X) = H(T) - H(T \vert X) = H(T) = - \sum_{i = 0}^N p_i \log p_i</script>
+
+<p>where <script type="math/tex">% <![CDATA[
+p_i = P (h \geq b_i \text{ and } h < b_{i + 1}) %]]></script> is the probability that the hidden unit activity <script type="math/tex">h</script> produced by input <script type="math/tex">X</script> is binned to bin <script type="math/tex">i</script>. For monotonic non-linearities, this can be rewritten as</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+p_i = P (X \geq f^{-1}(b_i) / w \text{ and } X < f^{-1}(b_{i + 1}) / w) %]]></script>
+
+<p>The following graphs show entropy of <script type="math/tex">T</script> or its mutual information with input <script type="math/tex">X</script> as a function of weights for an input arriving from a uniform distribution.</p>
+
+<div id="ggr" />
+
+<p align="center">
+<img src="https://github.com/AK101111/AK101111.github.io/blob/master/images/tanh4.png?raw=true" width="50%" height="50%" /><img src="https://github.com/AK101111/AK101111.github.io/blob/master/images/relu4.png?raw=true" width="50%" height="50%" />
+</p>
+
+<p>The above graphs show that the mutual information with the input decreases as a function of the weights after increasing first for the <script type="math/tex">\tanh</script> non-linearity but increases monotonically for the <script type="math/tex">ReLU</script> non-linearity.</p>
+
+<p>An intuitive way to understand the above result is that for very large weights, the <script type="math/tex">\tanh</script> hidden unit saturates yielding a discrete variable that concentrates primarily in just two bins, the lowest and the highest bin leading to the mutual information with the input of just one bit.</p>
+
+<p>Saxe et al attribute the compression phase of neural network training as advocated by Tishby et al to the information compression due to binning for double saturating non-linearities as shown above.</p>
+
+<p>Thus, the new authors attempt to refute the claim of the existence of distinct fitting and compression phases made by the original authors.</p>
+
+<h3 id="claim-2-the-excellent-generalization-of-deep-networks-due-to-the-compression-phase">Claim 2: The excellent generalization of deep networks due to the compression phase</h3>
+
+<p>The authors claim that there exists no causal connection between compression and generalization. In other words, networks that do not compress are still capable of generalization and vice-versa.</p>
+
+<p>In their argument against the previous claim, the authors portrayed the role of non-linearity in the observed compression behavior and attributing it to double saturating non-linearities and the binning methodology used to compute mutual information. However even without non-linearity, neurons could converge to highly correlated activations, or discard irrelevant information from the input as in the case of deep linear networks <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.408.1839&amp;rep=rep1&amp;type=pdf">Baldi and Hornik (1989)</a>, <a href="https://pdfs.semanticscholar.org/9505/f8c9e320fc51417ea5acbe6fad5afdcb37ec.pdf">Fukumizu (1998)</a> and <a href="https://arxiv.org/pdf/1312.6120.pdf">Saxe et al. (2014)</a>.</p>
+
+<p>The authors use simple linear networks trained in a student-teacher setting where the “student” neural network is fed with the output of the teacher neural network and the student learns. In recent results by <a href="">Advani and Saxe,2017</a> it has been shown that this setting generates a data set which allows for generalization performance calculation, exact computation of the mutual information (without any sort of quantization) and a direct computation of the IB bound.</p>
+
+<p align="center">
+	<figure>
+  <img src="https://github.com/AK101111/AK101111.github.io/blob/master/images/claim2.png?raw=true" width="80%" height="80%" alt="Claim2" />
+  <figcaption>Challenging the causality between generalization and compression. (Img. source Saxe et al. 2018)</figcaption>
+</figure>
+
+</p>
+
+<p>Next, the authors show using this setup that even with networks where it is known that they generalize well over data, compression might not be possible. Also they show the other side of the story, i.e. with networks that overfit too much might also possibly show no compression (as seen in the above image). Thus they challenge the causality between compression and generalization bounds.</p>
+
+<p>It is important to note here that the original authors had showed through their input compression bound described <a href="#Tight">here</a> that compression reduces the upper bound of the generalization error. However, the authors claim <a href="https://openreview.net/forum?id=ry_WPG-A-">here</a> that the original authors have not provided any rigorous argument for why it is safe to assume that deep networks result in partitions homogenous to the label probability. The information compression bound is not valid unless it can be shown that the partitions remain more or less homogenous to the label probability. We discuss further about it <a href="#Iffy">later</a> by designing a simple experiment which gives a deeper insight in this matter of debate.</p>
+
+<p>The authors report that they observe similar generalization performance between <script type="math/tex">\tanh</script> and <script type="math/tex">ReLU</script> networks despite different compression dynamics. Even if the bound shown by the original authors may exist, it may still be too weak. In other words, compression may not be a major factor behind the observed behavior.</p>
+
+<h3 id="claim-3-compression-phase-occurs-due-to-diffusion---like-behavior-of-sgd">Claim 3: Compression phase occurs due to diffusion - like behavior of SGD</h3>
+
+<p>The authors note that the compression phase, even when it exists, does not arise from stochasticity in training (one of the major results of Tishby et al.). They show this by replicating the information bottleneck findings using the full batch gradient descent and observing compression without the need for any stochasticity that was earlier originating from the stochastic gradient descent.</p>
+
+<p align="center">
+	<figure>
+  <img src="https://github.com/AK101111/AK101111.github.io/blob/master/images/claim3.png?raw=true" width="100%" height="100%" alt="Claim2" />
+  <figcaption>Is compression attributable to SGD? (Img. source Saxe et al. 2018)</figcaption>
+</figure>
+
+</p>
+
+<p>Here the figure represents four scenarios (A). <script type="math/tex">\tanh</script> network trained with SGD. (B) <script type="math/tex">\tanh</script> network trained with BGD. (C) <script type="math/tex">ReLU</script> network trained with SGD. (D) <script type="math/tex">ReLU</script> network trained with BGD. Essentially the authors provide counterexamples to the explanation that compression is attributable to SGD, by showing that Batch gradient descent shows similar information plane dynamics.</p>
+
+<p>Apart from the above evidence, the authors also provide a theoretical argument for concluding the possibility for an observed compression phase without training stochasticity. Their major  concern is that the distribution of weights driven to a maximum entropy constrained to the training error by the diffusion phase reflects stochasticity of weights across different training runs. The entropy of the inputs given the hidden layer activity, <script type="math/tex">H(X \vert T)</script> need not be maximized by the weights in a particular training run.</p>
+
+<h2 id="additional-experiments-for-verification-">Additional Experiments for verification (!)</h2>
+
+<p>To resolve this debate, we propose some experiments that may be used further by researchers in this domain to establish if not completely but to some extent what might be going on this debate for the DL and the Information theory community.</p>
+
+<h3 id="setup">Setup</h3>
+<p>We sampled uniformly data <script type="math/tex">X</script> from a set which contains all possible permutations of <code class="highlighter-rouge">4</code> boolean variables. So the distinct number of samples <script type="math/tex">X</script> can be at most <script type="math/tex">2^4</script> which is <code class="highlighter-rouge">16</code>. Next the task constructed was a simple task defined as:
+<script type="math/tex">y_i = ( x_{i1} \text{and } x_{i2} ) \text{ or  } ( x_{i3} \text{and } x_{i4} )</script></p>
+
+<p>To further complicate this task, a noise term was added to the output i.e., y was inverted (logically) with a probability of <code class="highlighter-rouge">0.07</code> for all samples.</p>
+
+<p>The number of data points sampled using the above scheme was set to <code class="highlighter-rouge">4096</code> and the neural network was chosen to have hidden layers of tanh nonlinearity and the design of the layers was: <code class="highlighter-rouge">Input-4-4-4-4-2-Output</code>.</p>
+
+<p>The network was trained using cross entropy loss with an SGD solver using a batch size of <code class="highlighter-rouge">16</code>.</p>
+
+<p>We have only tested these experiments on toy/small data sets but firmly believe that these experiments can be extended to real-life data sets and models and can establish at least empirically these two arguments. The entire code for this experiment is available at <a href="https://github.com/AK101111/AK101111.github.io/blob/master/_ipython/InfoDnnExperiments.ipynb">github</a>.</p>
+
+<p><br /></p>
+
+<div id="Iffy" />
+
+<h2 id="if-neural-networks-provide-partitions-which-are-homogeneous-to-class-label-probabilities">If Neural Networks provide partitions which are homogeneous to class label probabilities</h2>
+
+<p>The outputs of the second last layer were pulled out and thus T (the second last layer) was analyzed for information content and partition homogeneity. 
+This was achieved by finding an <script type="math/tex">\epsilon</script> partition over T for a particular <script type="math/tex">\epsilon</script>.</p>
+
+<p>In general, this problem of finding the partition is computationally hard.</p>
+
+<p>Next, we studied how the inputs were distributed among these partitions and tried to analyze if these partitions are homogeneous to label probability.</p>
+
+<p>The number of partitions achieved was <code class="highlighter-rouge">6</code> and the total input data points was <code class="highlighter-rouge">4096</code> and the number of output classes was <code class="highlighter-rouge">2</code> as the output <script type="math/tex">Y</script> was either <code class="highlighter-rouge">0</code> or <code class="highlighter-rouge">1</code>. 
+We found that the partitions were far from homogeneous among class labels, in fact, the distributions of our findings are plotted below.</p>
+
+<p align="center">
+<img src="https://github.com/AK101111/AK101111.github.io/blob/master/images/label.png?raw=true" />
+</p>
+
+<p><br /></p>
+<h2 id="the-information-theoretic-generalization-bound-is-too-loose">The information theoretic generalization bound is too loose</h2>
+
+<p>The general schema which may be used as further experimentation is provided. Essentially, we want to verify numerically how tight the bound is on generalization error in terms of the “information” quantities.</p>
+
+<p>First, some synthetic data will have to be created. (We need to know the sample distribution to calculate the entropy this input data, in general, other real-life data may be utilized, but the entropy will then have to be estimated).</p>
+
+<p>The next stage will involve training a neural network model with the given training data (skipping all forms of regularization, and also any tricks you might have up your sleeve including batch normalization, dropout, etc). This model will be used to calculate the difference in the test and the training error to give a numerical estimate for the generalization performance. Let us call this number <script type="math/tex">\epsilon</script>. Now using the same training data and the model trained above we will compute the <script type="math/tex">\epsilon</script> partition of any hidden layer of the network.</p>
+
+<p>Given such a partition and the entropy of the initial data, we can compute the mutual information of the partition given the data. This experiment may be repeated several times to give us an accurate measure of the confidence parameter which then can be finally used to show at least numerically how well this generalization bound fares.</p>
+
+<p><br />
+As another fun idea, one can track the weights learnt from the network during the end of each epoch and see if the start of the compression phase aligns with the point where the current weights lead to maximized input entropy for the <script type="math/tex">\tanh</script> activation as can be seen in the entropy-weight <a href="#ggr">graph</a>.</p>
+
+<p><br /></p>
+
+<h3 id="references">References</h3>
+
+<p>[1]. Shwartz-Ziv, Ravid, and Naftali Tishby. “Opening the black box of deep neural networks via information.” arXiv preprint arXiv:1703.00810 (2017).</p>
+
+<p>[2]. Saxe, A. M., Bansal, Y., Dapello, J., Advani, M., Kolchinsky, A., Tracey, B. D., and Cox, D. D. (2018). On the information bottleneck theory of deep learning. In International Conference on Learning Representations.</p>
+
+<p>[3]. Tishby, Naftali, and Noga Zaslavsky. “Deep learning and the information bottleneck principle.” Information Theory Workshop (ITW), 2015 IEEE. IEEE, 2015.</p>
+
+<p>[4]. Tishby, Naftali, Fernando C. Pereira, and William Bialek. “The information bottleneck method.” arXiv preprint physics/0004057 (2000).</p>
+
+<p>[5]. Achille, Alessandro, and Stefano Soatto. “On the emergence of invariance and disentangling in deep representations.” arXiv preprint arXiv:1706.01350 (2017).</p>
+
+<p>[6]. Advani, Madhu S., and Andrew M. Saxe. “High-dimensional dynamics of generalization error in neural networks.” arXiv preprint arXiv:1710.03667 (2017).</p>
+
+<p>[7]. Poggio, Tomaso, et al. “Why and when can deep-but not shallow-networks avoid the curse of dimensionality: A review.” International Journal of Automation and Computing 14.5 (2017): 503-519.</p>
+
+<p>[8]. P. Baldi and K. Hornik. Neural networks and principal component analysis: Learning from examples without local minima. Neural Networks, 2:53–58, 1989</p>
+
+<p>[9]. K. Fukumizu. Effect of Batch Learning In Multilayer Neural Networks. In Proceedings of the 5th International Conference on Neural Information Processing, pp. 67–70, 1998</p>
+
+<p>[10]. A.M. Saxe, J.L. McClelland, and S. Ganguli. Exact solutions to the nonlinear dynamics of learning in deep linear neural networks. In the International Conference on Learning Representations, 2014</p>
+
+</article>
+
+
+
+
+  <div class="py2 post-footer">
+  <img src="/images/me.jpeg" alt="John Otander" class="avatar" />
+  <p>
+    Arnav Kansal.
+  </p>
+  <p>
+    Follow him on <a href="https://twitter.com/c2quadisdbest">Twitter</a>.
+  </p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="center">
+  <div class="measure">
+    <small>
+      
+    </small>
+  </div>
+</footer>
+<!-- AnchorJS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.0.0/anchor.min.js"></script>
+<script>
+    anchors.options.visible = 'always';
+    anchors.add('article h2, article h3, article h4, article h5, article h6');
+</script>
+
+</body>
+</html>
