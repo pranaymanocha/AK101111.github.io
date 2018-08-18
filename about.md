@@ -28,7 +28,7 @@ Currently I am interning at <a href="https://www.citadelsecurities.com/" target=
 
 <h3>My hobbies</h3>
 
-<p>I like to cook. I am amazed by the huge choice of spices and herbs Indian food has to offer. Recently, I have also started running (hugely inspired by my Dad, who takes part in Marathons). I also used to build gaming rigs and I think that was a major reason why I chose Computer Science and Electrical Engineering.
+<p>I like to cook in my spare time. I also like to play soccer and enjoy running. I am always excited to know about the next generationn video games and the latest gaming PCs that can be built to play them.
 
 <!--
 <hr />
