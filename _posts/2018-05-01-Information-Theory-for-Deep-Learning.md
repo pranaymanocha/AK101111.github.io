@@ -5,6 +5,7 @@ date:       2018-05-01
 summary:    Trying to understand DL using the information perspective.
 categories: DL
 ---
+## Co-Author: [Nitish Agarwal](mailto:nitish.agarwal@nyu.edu)
 
 <p align="center">
 	<img src="https://github.com/AK101111/AK101111.github.io/blob/master/images/it.jpg?raw=true" alt="Information Theory"/>
